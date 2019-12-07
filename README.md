@@ -119,4 +119,4 @@ I have a reason not to organize the code and make it readable, the idea was to m
 so it can be really helpful for `bashing` things. Little dirty though. :-)
 
 
-***PS: This program can be really useful for educational purpose, not so useful for anyone though. :-)***
+***PS: This program can be really useful for educational purpose, not so useful for everyone though. :-)***
