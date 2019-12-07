@@ -1,0 +1,7 @@
+# IDE configuration files
+.idea
+.vscode/
+auto_wall.iml
+
+# development prestience files and configurations
+venv/
