@@ -1,0 +1,32 @@
+{
+  "darwin": {
+    "background": ["osascript", "-e",  "tell application \"Finder\" to set desktop picture to POSIX file \"%image%\""],
+    "screensaver": [""]
+  },
+  "windows": {
+    "background": [""],
+    "screensaver": [""]
+  },
+  "linux": {
+      "gnome": {
+        "background": ["gsettings", "set", "org.gnome.desktop.background", "picture-uri", "%image%"],
+        "screensaver": [""]
+      },
+      "xfce": {
+        "background": ["xfconf-query", "--channel", "xfce4-desktop", "--property", "/backdrop/screen0/monitorLVDS1/workspace0/last-image", "--set", "%image%"],
+        "screensaver": [""]
+      },
+      "kde": {
+        "background": [""],
+        "screensaver": [""]
+      },
+      "cinnamon": {
+        "background": [""],
+        "screensaver": [""]
+      },
+      "elementory": {
+        "background": [""],
+        "screensaver": [""]
+      }
+    }
+}

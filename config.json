@@ -1,0 +1,35 @@
+{
+  "default_query": null,
+  "default_wallpapers_dir": "%home_dir% %sep% Pictures %sep% Wallpapers",
+  "resolution": "1366x768",
+  "headers": {
+    "Content-Type": "application/json",
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+  },
+  "remotes": {
+    "pexels": {
+      "headers": {
+        "Authorization": ""
+      },
+      "endpoint": "https://api.pexels.com/v1/",
+      "curated": "curated",
+      "query": "search?query=",
+      "count": "per_page=",
+      "default_result": 15,
+      "extract_keys": ["photos",["src", ["original"]]],
+      "page": "page="
+    },
+    "unsplash": {
+      "headers": {
+        "Authorization": ""
+      },
+      "endpoint": "https://api.unsplash.com/",
+      "curated": "random",
+      "query": "search?query=",
+      "count": "per_page=",
+      "default_result": 15,
+      "extract_keys": ["url"],
+      "page": "page="
+    }
+  }
+}
