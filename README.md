@@ -5,6 +5,7 @@ Most Advance Cross Platform Desktop Screen Wall Manipulation Program written in 
 Extremely lightweight without the need of any third party packages.
 
 ![https://imgur.com/GTg5loN.png](https://imgur.com/GTg5loNl.png)
+
 ## 1. Installation
 
 Python 3.5 or above is required to run to run the program.
@@ -12,10 +13,10 @@ Python 3.5 or above is required to run to run the program.
 1. Clone or download the zip archive from github repo.
 2. Extract or cd into the project folder and run `python setup.py`
 
-***# TODO HERE***
+***# ___TODO HERE___***
 
 ```
-[debendra@debendra-pc ~]$ git clone https://
+[debendra@debendra-pc ~]$ git clone https://github.com/debendraoli/auto_wall.git
 [debendra@debendra-pc ~]$ cd auto_wall
 [debendra@debendra-pc ~/auto_wall]$ python setup.py
 ```
@@ -35,18 +36,17 @@ Python 3.5 or above is required to run to run the program.
 
 Lets assume we have number of pictures on `/home/debendra/Pictures/Wallpapers`
 
-```
-[debendra@debendra-pc ~]$ auto_wall --image /home/debendra/Pictures/Wallpapers
-```
+`$ auto_wall --image /home/debendra/Pictures/Wallpapers`
+
 Default wallpaper directory specified in `config.json` will be used if no image source is supplied.
 
 ### 2. Choose random remote images
 
-Well `auto_wall` can interact with external image hosting any sites that exists on the WWW, api are fully pluggable from
-configuration. (I can say this is the best part.) :-)
+Well `auto_wall` can interact with external any image hosting sites that exists on the WWW, api are fully pluggable from
+configuration. (I can say this is the best feature.) :-)
 
 You can configure any numbers of image provider just modifying the configuration files without the need to
-touch the code but least `JSON` knowledge is required :-).
+touch the code but the least `JSON` knowledge is required :-).
 
 Image provider must support api endpoint in order to support the external fetch.
 
@@ -60,9 +60,9 @@ Currently pexels and unsplash are already configured.
 
 `$ auto_wall --image unsplash`
 
-Above command will fetch the images the unsplash and apply to both screens action. (background, lock screen)
+Above command will fetch the images from the unsplash api and apply to both screens action. (background, lock screen)
 
-### 3. Neglect specific screen action
+### 3. Neglect specific screen action.
 
 Specific screen action can be omitted.
 
@@ -70,7 +70,7 @@ Supply argument as `--no-wall` for wallpaper and `no-lock-screen` for screen sav
 
 `$ auto_wall --image /home/suraj/bikini_girls --no-lock-screen` :-(
 
-Above command will randomly select images from the path specified and neglect the screen saver/lock.
+Above command will randomly select one image from the path specified and neglect the screen saver/lock.
 
 ### 4. Search and apply remote images.
 
@@ -78,22 +78,23 @@ You can also search your desired images.
 
 `$ auto_wall --image pexels --query nature`
 
-Above command will fetch images from the pexels api based on search query and apply accordingly. 
+Above command will fetch images from the pexels api based on search query and apply accordingly.
+As we don't have neglected any screen, two images will be downloaded.
 
 ## 4. Configuration Option
 
-As I yield that program is cross platform, accordingly I have provided support as well.
+As I yield that program is cross platform, accordingly I have provided some sort of flexibility as well.
 
 Number of placeholders are available for configurations.
 
 1. `%home_dir%`: can be used for the user's home directory.
 2. `%sep%`: directory separator.
 3. `%_%`: for spaces.
-4. `image%`: pass image path as argument to the OS command.
+4. `%image%`: pass image path as argument to the OS command.
 
-***Placeholders are case-insensitive.***
+***___Placeholders are case-insensitive.___***
 
-***Supply `auto_wall --help`  for more.*** 
+***___Supply `auto_wall --help`  for more.___*** 
 
 ## 5. Support
 
@@ -119,4 +120,4 @@ I have a reason not to organize the code and make it readable, the idea was to m
 so it can be really helpful for `bashing` things. Little dirty though. :-)
 
 
-***PS: This program can be really useful for educational purpose, not so useful for anyone though. :-)***
+***___PS: This program can be really useful for educational purpose, not so useful for anyone though. :-)___***
