@@ -53,8 +53,8 @@ def check_query(string: str) -> str:
 
 def save_image(resource: str, retrieve_path: str) -> str or None:
     try:
-        req = Request(headers=config["headers"], url=resource)
         print(f"Downloading image from {resource}.")
+        req = Request(headers=config["headers"], url=resource)
         with urlopen(req) as response:
             if response.status == 200:
                 content = response.read()
@@ -74,13 +74,13 @@ def save_image(resource: str, retrieve_path: str) -> str or None:
 
 
 def download_images(resource_urls: list[str]) -> list[str]:
-    retrieve_path = path.join(wallpaper_dir, "remote_retrieve")
+    dest_path = path.join(wallpaper_dir, "remote_retrieve")
     try:
-        makedirs(retrieve_path)
-        print(f'Directory created in {retrieve_path}, selected...')
+        makedirs(dest_path)
+        print(f'Directory created in {dest_path}, selected...')
     except FileExistsError:
-        print(f"Directory exists {retrieve_path}, selected...")
-    return [save_image(url, retrieve_path) for url in resource_urls]
+        print(f"Directory exists {dest_path}, selected...")
+    return [save_image(url, dest_path) for url in resource_urls]
 
 
 def get_photos_link(photos, keys):
@@ -110,8 +110,8 @@ def request_remote_pictures(site: str) -> tuple[bool, list[str]] or None:
     url_path = f"{site.get('query')}={search_query}" if search_query else site.get("curated")
     result = f"{query_string_validator(url_path)}{site.get('count')}={site.get('default_result')}"
     url = f"{site.get('endpoint')}{url_path}{result}"
-    req = Request(url=url, headers=config["headers"])
     try:
+        req = Request(url=url, headers=config["headers"])
         with urlopen(req) as response:
             load_responses = loads(response.read().decode("UTF-8"))
             return True, get_photos_link(load_responses, site.get("extract_keys"))
@@ -131,10 +131,10 @@ def check_image(string: str):
     images_urls = request_remote_pictures(string)
     if not images_urls:
         raise ArgumentTypeError(f"Failed to get image from the {string}")
-    return images_urls
+    return True, images_urls
 
 
-def get_random(iterable, length=2) -> list:
+def get_random(iterable, length=2) -> list[str]:
     pictures = random.sample(tuple(iterable), k=length)
     return pictures[:2]
 
@@ -150,12 +150,12 @@ def set_screen(image: list[str], screens: list[str]) -> None:
             command[command.index("%image%".lower())] = image[i]
         except ValueError:
             print(f"Bad configuration for {screen} command.")
-            continue
+            exit(1)
         process = subprocess.run(command, stderr=subprocess.PIPE, encoding="utf-8")
         exit_code = process.returncode
         if process.returncode == 0:
             print(f"Changed {screen} image successfully.")
-            return None
+            exit()
         print(f"Failed to set {screen} image.")
         print(f"Command exited with exit code {exit_code}: %s" % process.stderr.split("\n")[0])
 
@@ -163,7 +163,7 @@ def set_screen(image: list[str], screens: list[str]) -> None:
 default_screens = ["background", "screensaver"]
 parser = ArgumentParser(description="Simple screen image changer", prog="auto_wall", conflict_handler='resolve')
 parser.add_argument("--query", "-q", help="Search against.", type=check_query)
-parser.add_argument("--image", "-i", action="store", type=check_image, default=wallpaper_dir, help="Path or remotes.")
+parser.add_argument("--src", "-s", action="store", type=check_image, default=wallpaper_dir, help="Path or remotes.")
 parser.add_argument("--screens", choices=default_screens, default=default_screens, nargs='+', help="Screen selections.")
 parser.add_argument("--version", "-v", action="version", version="%(prog)s 1.0")
 
