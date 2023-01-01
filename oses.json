@@ -27,6 +27,10 @@
       "elementory": {
         "background": [""],
         "screensaver": [""]
-      }
+      },
+      "sway": {
+        "background": ["swaymsg", "output", "*", "bg", "%image%", "fill"],
+        "screensaver": ["swaylock", "--font", "pango:Liberation Sans 10", "-e", "-f", "-t", "-F", "-i", "%image%"]
     }
+  }
 }
